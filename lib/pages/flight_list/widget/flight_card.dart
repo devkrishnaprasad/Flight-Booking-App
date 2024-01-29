@@ -15,7 +15,7 @@ class _FlightListCardState extends State<FlightListCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20.w, right: 20.w),
+      padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.h),
       child: Container(
         height: 220.h,
         decoration: BoxDecoration(
@@ -67,7 +67,7 @@ class _FlightListCardState extends State<FlightListCard> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 5.w),
+              padding: EdgeInsets.only(left: 10.w),
               child: Row(
                 children: [
                   Column(
@@ -81,8 +81,10 @@ class _FlightListCardState extends State<FlightListCard> {
                       SizedBox(
                         height: 5.h,
                       ),
-                      const Text('DEL (Delhi)',
-                          style: TextStyle(color: Colors.grey))
+                      const Text(
+                        'DEL (Delhi)',
+                        style: TextStyle(color: Colors.grey),
+                      )
                     ],
                   ),
                   Row(
@@ -92,29 +94,26 @@ class _FlightListCardState extends State<FlightListCard> {
                       ),
                       CustomPaint(
                         painter: LineWithCirclesPainter(),
-                        size: Size(150.w, 20),
+                        size: Size(120.w, 20),
                       ),
                       SizedBox(
                         width: 5.w,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 0.w),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            const Text(
-                              '5:50',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            const Text('DEL (Delhi)',
-                                style: TextStyle(color: Colors.grey))
-                          ],
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text(
+                            '7:30',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          const Text('CCU (Kolkata)',
+                              style: TextStyle(color: Colors.grey))
+                        ],
                       ),
                     ],
                   ),

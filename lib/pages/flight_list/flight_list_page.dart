@@ -22,13 +22,16 @@ class _FlightsPageState extends State<FlightsPage> {
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 30.h,
-          ),
-          const FlightListCard(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30.h,
+            ),
+            const FlightListCard(),
+            const FlightListCard(),
+          ],
+        ),
       ),
     );
   }

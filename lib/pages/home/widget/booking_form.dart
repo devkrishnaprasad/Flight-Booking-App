@@ -3,6 +3,7 @@ import 'package:flight_booking/pages/flight_list/flight_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class BookingForm extends StatefulWidget {
   const BookingForm({super.key});
@@ -12,12 +13,22 @@ class BookingForm extends StatefulWidget {
 }
 
 class _BookingFormState extends State<BookingForm> {
+  TextEditingController dateInput = TextEditingController();
+  String selectedTraveller = '1 Adult';
+  String selectedFlightClass = 'Economy';
+
+  @override
+  void initState() {
+    dateInput.text = "";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 15.w, right: 15.h),
       child: Container(
-        height: 330.h,
+        height: 335.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -35,6 +46,7 @@ class _BookingFormState extends State<BookingForm> {
           child: Column(
             children: [
               TextFormField(
+                style: const TextStyle(color: Colors.black),
                 obscureText: false,
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
@@ -60,6 +72,7 @@ class _BookingFormState extends State<BookingForm> {
                 height: 20.h,
               ),
               TextFormField(
+                style: const TextStyle(color: Colors.black),
                 obscureText: false,
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
@@ -89,6 +102,9 @@ class _BookingFormState extends State<BookingForm> {
                   SizedBox(
                     width: 135.w,
                     child: TextFormField(
+                      readOnly: true,
+                      style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                      controller: dateInput,
                       obscureText: false,
                       cursorColor: Colors.grey,
                       decoration: InputDecoration(
@@ -111,6 +127,21 @@ class _BookingFormState extends State<BookingForm> {
                           ),
                         ),
                       ),
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100));
+
+                        if (pickedDate != null) {
+                          String formattedDate =
+                              DateFormat('dd/MM/yyyy').format(pickedDate);
+                          setState(() {
+                            dateInput.text = formattedDate;
+                          });
+                        } else {}
+                      },
                     ),
                   ),
                   SizedBox(
@@ -119,6 +150,8 @@ class _BookingFormState extends State<BookingForm> {
                   SizedBox(
                     width: 135.w,
                     child: TextFormField(
+                      readOnly: true,
+                      style: const TextStyle(color: Colors.black),
                       initialValue: 'Add Return Date',
                       obscureText: false,
                       cursorColor: Colors.grey,
@@ -153,16 +186,16 @@ class _BookingFormState extends State<BookingForm> {
                 children: [
                   SizedBox(
                     width: 135.w,
-                    child: TextFormField(
-                      obscureText: false,
-                      cursorColor: Colors.grey,
+                    child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                         labelText: 'Traveller',
                         labelStyle: const TextStyle(
                           color: Colors.grey,
                         ),
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 12.0.h, horizontal: 20.0.w),
+                          vertical: 12.0.h,
+                          horizontal: 20.0.w,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -173,6 +206,24 @@ class _BookingFormState extends State<BookingForm> {
                           ),
                         ),
                       ),
+                      value: selectedTraveller,
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedTraveller = newValue.toString();
+                        });
+                      },
+                      items: ['1 Adult', '2 Adults', '3 Adults', '4 Adults']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
                   SizedBox(
@@ -180,16 +231,22 @@ class _BookingFormState extends State<BookingForm> {
                   ),
                   SizedBox(
                     width: 135.w,
-                    child: TextFormField(
-                      obscureText: false,
-                      cursorColor: Colors.grey,
+                    child: DropdownButtonFormField<String>(
+                      value: selectedFlightClass,
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedFlightClass = newValue.toString();
+                        });
+                      },
                       decoration: InputDecoration(
                         labelText: 'Class',
                         labelStyle: const TextStyle(
                           color: Colors.grey,
                         ),
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 12.0.h, horizontal: 20.0.w),
+                          vertical: 12.0.h,
+                          horizontal: 20.0.w,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -200,6 +257,20 @@ class _BookingFormState extends State<BookingForm> {
                           ),
                         ),
                       ),
+                      items: [
+                        'Economy',
+                        'Business',
+                        'First Class',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 14.sp),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
                 ],
