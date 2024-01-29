@@ -1,5 +1,5 @@
 import 'package:flight_booking/constands.dart';
-import 'package:flight_booking/pages/home/widget/booking_form_card.dart';
+import 'package:flight_booking/pages/home/widget/booking_form.dart';
 import 'package:flight_booking/pages/home/widget/offer_card.dart';
 import 'package:flight_booking/utils/navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
@@ -141,9 +141,18 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 10.h,
+              height: 20.h,
             ),
-            OfferCard(),
+            SizedBox(
+              height: 120.0.h, // Provide a fixed height
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return const OfferCard();
+                },
+              ),
+            ),
             SizedBox(
               height: 70.h,
             )

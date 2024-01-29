@@ -46,33 +46,46 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   Icons.home,
                   color: _navbarController.activeTab.value == 'Home'
                       ? Colors.white
-                      : Colors.grey,
+                      : const Color.fromARGB(255, 201, 199, 199),
                 ),
               ),
               IconButton(
                 onPressed: () {
                   setState(() {
-                    _navbarController.activeTab.value = 'Cart';
+                    _navbarController.activeTab.value = 'Booking';
                   });
                 },
                 icon: Icon(
-                  Icons.shopping_bag_outlined,
-                  color: _navbarController.activeTab.value == 'Cart'
+                  Icons.list_alt_outlined,
+                  color: _navbarController.activeTab.value == 'Booking'
                       ? Colors.white
-                      : Colors.grey,
+                      : const Color.fromARGB(255, 201, 199, 199),
                 ),
               ),
               IconButton(
                 onPressed: () {
                   setState(() {
-                    _navbarController.activeTab.value = 'Favorite';
+                    _navbarController.activeTab.value = 'Offer';
                   });
                 },
                 icon: Icon(
-                  Icons.favorite,
-                  color: _navbarController.activeTab.value == 'Favorite'
+                  Icons.discount_outlined,
+                  color: _navbarController.activeTab.value == 'Offer'
                       ? Colors.white
-                      : Colors.grey,
+                      : const Color.fromARGB(255, 201, 199, 199),
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _navbarController.activeTab.value = 'Mail';
+                  });
+                },
+                icon: Icon(
+                  Icons.mail_outline,
+                  color: _navbarController.activeTab.value == 'Mail'
+                      ? Colors.white
+                      : const Color.fromARGB(255, 201, 199, 199),
                 ),
               ),
               IconButton(
@@ -82,10 +95,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   });
                 },
                 icon: Icon(
-                  Icons.person_outline_outlined,
+                  Icons.person_outline,
                   color: _navbarController.activeTab.value == 'Profile'
                       ? Colors.white
-                      : Colors.grey,
+                      : const Color.fromARGB(255, 201, 199, 199),
                 ),
               ),
             ],
