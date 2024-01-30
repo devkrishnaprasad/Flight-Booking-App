@@ -190,7 +190,11 @@ class _FlightListCardState extends State<FlightListCard> {
                 ),
               ),
               onPressed: () {
-                Get.to(const SelectSeatPage());
+                Get.to(
+                  const SelectSeatPage(),
+                  transition: Transition.cupertino,
+                  duration: const Duration(milliseconds: 1000),
+                );
               },
               child: Center(
                 child: Text(

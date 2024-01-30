@@ -22,6 +22,12 @@ class _SeatCardState extends State<SeatCard> {
   static int selectedSeatCount = 0;
 
   bool isSelected = false;
+  @override
+  void dispose() {
+    selectedSeatCount = 0;
+    isSelected = false;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +35,18 @@ class _SeatCardState extends State<SeatCard> {
       padding: EdgeInsets.only(bottom: 10.h),
       child: GestureDetector(
         onTap: () {
-          if (isSelected) {
-            setState(() {
-              isSelected = false;
-              selectedSeatCount--;
-            });
-          } else if (selectedSeatCount < 4) {
-            setState(() {
-              isSelected = true;
-              selectedSeatCount++;
-            });
+          if (widget.type != '0') {
+            if (isSelected) {
+              setState(() {
+                isSelected = false;
+                selectedSeatCount--;
+              });
+            } else if (selectedSeatCount < 4) {
+              setState(() {
+                isSelected = true;
+                selectedSeatCount++;
+              });
+            }
           }
         },
         child: Container(
@@ -47,8 +55,8 @@ class _SeatCardState extends State<SeatCard> {
           decoration: BoxDecoration(
             color: isSelected
                 ? Colors.green
-                : widget.type == 'free'
-                    ? const Color.fromARGB(255, 233, 230, 230)
+                : widget.type == '1'
+                    ? Colors.white
                     : primaryColor,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
@@ -63,8 +71,12 @@ class _SeatCardState extends State<SeatCard> {
           child: Center(
             child: Text(
               '${widget.seatNumber} ${widget.seatName}',
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: isSelected
+                    ? Colors.white
+                    : widget.type == '1'
+                        ? Colors.black
+                        : Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),

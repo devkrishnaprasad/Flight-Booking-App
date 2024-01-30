@@ -254,14 +254,24 @@ class _PaymentPageState extends State<PaymentPage> {
                             child: TextFormField(
                               style: const TextStyle(color: Colors.black),
                               decoration: InputDecoration(
+                                labelText: 'UPI ID',
+                                labelStyle:
+                                    const TextStyle(color: Colors.black),
                                 hintText: "UPI ID",
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 12.0.w, horizontal: 10.0.h),
                                 border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.grey, width: 1.0.w),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10.0))),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey, width: 1.0.w),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.grey,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -281,7 +291,11 @@ class _PaymentPageState extends State<PaymentPage> {
                 minimumSize: MaterialStateProperty.all(Size(320.0.w, 50.0.h)),
               ),
               onPressed: () {
-                Get.to(const TicketsPage());
+                Get.to(
+                  const TicketsPage(),
+                  transition: Transition.cupertino,
+                  duration: const Duration(milliseconds: 1000),
+                );
               },
               child: const Text(
                 'Confirm',

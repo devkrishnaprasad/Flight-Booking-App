@@ -15,7 +15,7 @@ class SelectSeatPage extends StatefulWidget {
 }
 
 class _SelectSeatPageState extends State<SelectSeatPage> {
-  var seatType = ['free', 'not_free'];
+  var seatType = ['1', '0'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +41,11 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
             minimumSize: MaterialStateProperty.all(Size(320.0.w, 50.0.h)),
           ),
           onPressed: () {
-            Get.to(const PaymentPage());
+            Get.to(
+              const PaymentPage(),
+              transition: Transition.cupertino,
+              duration: const Duration(milliseconds: 1000),
+            );
           },
           child: const Text(
             'Confirm',
@@ -105,9 +109,13 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                     Container(
                       width: 10.h,
                       height: 10.h,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Colors.black,
+                            width: 1.0,
+                            style: BorderStyle.solid),
                         shape: BoxShape.circle,
-                        color: Color.fromARGB(255, 233, 230, 230),
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(
@@ -162,7 +170,8 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                           itemCount: 8,
                           itemBuilder: (context, index) {
                             return SeatCard(
-                              type: 'free',
+                              type:
+                                  Random().nextInt(seatType.length).toString(),
                               seatNumber: (index + 1).toString(),
                               seatName: 'B',
                             );
@@ -181,7 +190,8 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                           itemCount: 8,
                           itemBuilder: (context, index) {
                             return SeatCard(
-                              type: 'free',
+                              type:
+                                  Random().nextInt(seatType.length).toString(),
                               seatNumber: (index + 1).toString(),
                               seatName: 'C',
                             );
@@ -200,7 +210,8 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                           itemCount: 8,
                           itemBuilder: (context, index) {
                             return SeatCard(
-                              type: 'free',
+                              type:
+                                  Random().nextInt(seatType.length).toString(),
                               seatNumber: (index + 1).toString(),
                               seatName: 'D',
                             );
