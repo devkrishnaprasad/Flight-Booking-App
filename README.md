@@ -1,16 +1,23 @@
-# flight_booking
+# App Screen shots
 
-A new Flutter project.
+<br>
+<br>
 
-## Getting Started
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/screenshots/onboard_scree.png" width="250" height="500"/>
+  <img src="assets/screenshots/Home.png" width="250" height="500"/>
+  <img src="assets/screenshots/Flight_card.png" width="250" height="500"/>
+  <img src="assets/screenshots/Select_seat.png" width="250" height="500"/>
+</div>
 
-This project is a starting point for a Flutter application.
+<br>
+<br>
 
-A few resources to get you started if this is your first Flutter project:
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/screenshots/Payment.png" width="250" height="500"/>
+  <img src="assets/screenshots/Payment_UPI.png" width="250" height="500"/>
+  <img src="assets/screenshots/Boarding_pass.png"width="250" height="500"/>
+</div>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<br>
+<br>
