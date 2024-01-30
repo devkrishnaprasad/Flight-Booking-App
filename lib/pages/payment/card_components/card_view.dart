@@ -59,57 +59,61 @@ class _CardViewWidgetState extends State<CardViewWidget> {
                   children: [
                     TextFormField(
                       style: const TextStyle(color: Colors.black),
-                      controller: cardNumberController,
-                      keyboardType: TextInputType.number,
-                      validator: CardUtils.validateCardNum,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(19),
-                        CardNumberInputFormatter(),
-                      ],
                       decoration: InputDecoration(
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        hintText: "Card number",
-                        suffix: CardUtils.getCardIcon(cardType),
-                        isDense: true,
+                        labelText: 'Card holder name',
+                        labelStyle: const TextStyle(color: Colors.black),
+                        hintText: "Card holder name",
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 12.0.w, horizontal: 10.0.h),
                         border: OutlineInputBorder(
                           borderSide:
                               BorderSide(color: Colors.grey, width: 1.0.w),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
-                      onChanged: (value) {
-                        setState(() {});
-                      },
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.w),
                       child: TextFormField(
                         style: const TextStyle(color: Colors.black),
+                        controller: cardNumberController,
+                        keyboardType: TextInputType.number,
+                        validator: CardUtils.validateCardNum,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(19),
+                          CardNumberInputFormatter(),
+                        ],
                         decoration: InputDecoration(
-                          hintText: "Card holder name",
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0.w, horizontal: 10.0.h),
-                          border: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0.w),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
+                          labelText: 'Card number',
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Colors.grey,
                             ),
                           ),
+                          hintText: "Card number",
+                          suffix: CardUtils.getCardIcon(cardType),
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 12.0.w, horizontal: 10.0.h),
+                          border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0.w),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10.0)),
+                          ),
                         ),
+                        onChanged: (value) {
+                          setState(() {});
+                        },
                       ),
                     ),
                     Row(
@@ -124,6 +128,8 @@ class _CardViewWidgetState extends State<CardViewWidget> {
                               LengthLimitingTextInputFormatter(3),
                             ],
                             decoration: const InputDecoration(
+                              labelText: 'CVV',
+                              labelStyle: TextStyle(color: Colors.black),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Colors.grey,
@@ -150,6 +156,8 @@ class _CardViewWidgetState extends State<CardViewWidget> {
                               CardMonthInputFormatter(),
                             ],
                             decoration: const InputDecoration(
+                              labelText: 'Expire Date',
+                              labelStyle: TextStyle(color: Colors.black),
                               hintText: "MM/YY",
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 12.0, horizontal: 10.0),

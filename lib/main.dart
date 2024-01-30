@@ -11,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -21,7 +20,6 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'First Method',
           theme: ThemeData(
             useMaterial3: true,
             primaryColor: primaryColor,
@@ -31,7 +29,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const OnboardingScreen(),
+      child: OnboardingScreen(),
     );
   }
 }

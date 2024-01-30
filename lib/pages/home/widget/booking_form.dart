@@ -1,3 +1,4 @@
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flight_booking/constands.dart';
 import 'package:flight_booking/pages/flight_list/flight_list_page.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,18 @@ class _BookingFormState extends State<BookingForm> {
     super.initState();
   }
 
+  final List<String> staticPlaces = [
+    "Delhi DEL\nIndira Gandhi International Airport",
+    "Kolkata CCU\nIndira Gandhi International Airport",
+    "Kochi KCH\nIndira Gandhi International Airport",
+    "Bangalore BNG\nIndira Gandhi International Airport",
+  ];
+
+  TextEditingController _toController = TextEditingController();
+  TextEditingController _fromController = TextEditingController();
+  GlobalKey<AutoCompleteTextFieldState<String>> from = GlobalKey();
+  GlobalKey<AutoCompleteTextFieldState<String>> to = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,54 +58,102 @@ class _BookingFormState extends State<BookingForm> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              TextFormField(
-                style: const TextStyle(color: Colors.black),
-                obscureText: false,
-                cursorColor: Colors.grey,
+              AutoCompleteTextField(
+                clearOnSubmit: false,
+                key: to,
+                controller: _toController,
+                suggestions: staticPlaces,
+                style: const TextStyle(color: Colors.black, fontSize: 16.0),
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
-                    Icons.flight_takeoff,
+                    Icons.flight_land,
                   ),
-                  labelText: 'From',
-                  labelStyle: const TextStyle(
-                    color: Colors.grey,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
+                  labelStyle: const TextStyle(color: Colors.black),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
                       color: Colors.grey,
                     ),
                   ),
+                  labelText: 'To',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
+                itemFilter: (suggestion, query) {
+                  return suggestion
+                      .toLowerCase()
+                      .startsWith(query.toLowerCase());
+                },
+                itemSorter: (a, b) {
+                  return a.compareTo(b);
+                },
+                itemSubmitted: (data) {
+                  _toController.text = data;
+                },
+                itemBuilder: (context, suggestion) {
+                  return Container(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          suggestion,
+                          style: const TextStyle(color: Colors.black),
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
               SizedBox(
                 height: 20.h,
               ),
-              TextFormField(
-                style: const TextStyle(color: Colors.black),
-                obscureText: false,
-                cursorColor: Colors.grey,
+              AutoCompleteTextField(
+                clearOnSubmit: false,
+                key: from,
+                controller: _fromController,
+                suggestions: staticPlaces,
+                style: const TextStyle(color: Colors.black, fontSize: 16.0),
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
-                    Icons.flight_land_sharp,
+                    Icons.flight_takeoff,
                   ),
-                  labelText: 'To',
-                  labelStyle: const TextStyle(
-                    color: Colors.grey,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
+                  labelStyle: const TextStyle(color: Colors.black),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
                       color: Colors.grey,
                     ),
                   ),
+                  labelText: 'From',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
+                itemFilter: (suggestion, query) {
+                  return suggestion
+                      .toLowerCase()
+                      .startsWith(query.toLowerCase());
+                },
+                itemSorter: (a, b) {
+                  return a.compareTo(b);
+                },
+                itemSubmitted: (data) {
+                  _fromController.text = data;
+                },
+                itemBuilder: (context, suggestion) {
+                  return Container(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          suggestion,
+                          style: const TextStyle(color: Colors.black),
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
               SizedBox(
                 height: 20.h,
@@ -292,7 +353,11 @@ class _BookingFormState extends State<BookingForm> {
                   ),
                 ),
                 onPressed: () {
-                  Get.to(const FlightsPage());
+                  Get.to(
+                    const FlightsPage(),
+                    transition: Transition.cupertino,
+                    duration: const Duration(milliseconds: 1000),
+                  );
                 },
                 child: Center(
                   child: Text(

@@ -3,6 +3,7 @@ import 'package:flight_booking/constands.dart';
 import 'package:flight_booking/pages/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -17,8 +18,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomePage()),
+      Get.to(
+        const HomePage(),
+        transition: Transition.cupertino,
+        duration: const Duration(milliseconds: 1000),
       );
     });
   }
