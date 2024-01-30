@@ -1,6 +1,8 @@
 import 'package:flight_booking/constands.dart';
+import 'package:flight_booking/pages/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class TicketsPage extends StatefulWidget {
   const TicketsPage({super.key});
@@ -412,7 +414,13 @@ class _TicketsPageState extends State<TicketsPage> {
                   height: 10.h,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(
+                      const HomePage(),
+                      transition: Transition.cupertino,
+                      duration: const Duration(milliseconds: 1000),
+                    );
+                  },
                   child: Text(
                     'Book another flight',
                     style: TextStyle(

@@ -31,8 +31,8 @@ class _BookingFormState extends State<BookingForm> {
     "Bangalore BNG\nIndira Gandhi International Airport",
   ];
 
-  TextEditingController _toController = TextEditingController();
-  TextEditingController _fromController = TextEditingController();
+  final TextEditingController _toController = TextEditingController();
+  final TextEditingController _fromController = TextEditingController();
   GlobalKey<AutoCompleteTextFieldState<String>> from = GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<String>> to = GlobalKey();
 
